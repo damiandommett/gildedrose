@@ -17,7 +17,7 @@ namespace GildedRoseKata
             {
                 var itemName = Items[i].Name;
 
-                if (itemName != "Sulfuras, Hand of Ragnaros")
+                if (NotLegendaryItem(itemName))
                 {
                     if (itemName != "Aged Brie" && itemName != "Backstage passes to a TAFKAL80ETC concert")
                     {
@@ -73,6 +73,11 @@ namespace GildedRoseKata
                     }
                 }
             }
+        }
+
+        private static bool NotLegendaryItem(string itemName)
+        {
+            return itemName != "Sulfuras, Hand of Ragnaros";
         }
 
         private void CheckAndIncreaseQuality(Item item)

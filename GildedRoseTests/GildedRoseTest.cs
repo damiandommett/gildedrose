@@ -33,5 +33,6 @@ namespace GildedRoseTests
             Assert.Equal(2, Items[0].Quality);
         }
 
+
     }
 }

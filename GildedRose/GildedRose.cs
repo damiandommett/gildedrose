@@ -23,7 +23,7 @@ namespace GildedRoseKata
                     {
                         if (itemName != "Sulfuras, Hand of Ragnaros")
                         {
-                            ReduceQuality(Items[i]);
+                            Items[i].Quality = Items[i].Quality - 1;
                         }
                     }
                 }
@@ -69,13 +69,13 @@ namespace GildedRoseKata
                             {
                                 if (itemName != "Sulfuras, Hand of Ragnaros")
                                 {
-                                    ReduceQuality(Items[i]);
+                                    Items[i].Quality = Items[i].Quality - 1;
                                 }
                             }
                         }
                         else
                         {
-                            ReduceQuality(Items[i]);
+                            Items[i].Quality = Items[i].Quality - Items[i].Quality;
                         }
                     }
                     else
@@ -92,10 +92,6 @@ namespace GildedRoseKata
         private void ReduceSellInTime(Item item)
         {
             item.SellIn -= 1;
-        }
-        private void ReduceQuality(Item item)
-        {
-            item.Quality -= 1;
         }
     }
 }

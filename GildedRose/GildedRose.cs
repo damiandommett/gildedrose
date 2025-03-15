@@ -38,6 +38,7 @@ namespace GildedRoseKata
                             if (Items[i].SellIn < 11)
                             {
                                 CheckAndReduceQuality(Items[i]);
+    
                             }
 
                             if (Items[i].SellIn < 6)

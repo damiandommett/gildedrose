@@ -104,5 +104,33 @@ namespace GildedRoseTests
             app.UpdateQuality();
             Assert.Equal(90, Items[0].Quality);
         }
+
+        [Fact]
+        public void concert_quality_increases_by_one_more_than_ten_days_away()
+        {
+            IList<Item> Items = new List<Item> { new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 17, Quality = 6 } };
+            GildedRose app = new GildedRose(Items);
+            app.UpdateQuality();
+            Assert.Equal(7, Items[0].Quality);
+        }
+
+        [Fact]
+        public void concert_quality_increases_by_two_less_than_ten_more_than_five_days_away()
+        {
+            IList<Item> Items = new List<Item> { new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 7, Quality = 9 } };
+            GildedRose app = new GildedRose(Items);
+            app.UpdateQuality();
+            Assert.Equal(11, Items[0].Quality);
+        }
+
+        [Fact]
+        public void concert_quality_increases_by_thre_less_than_five_days_away()
+        {
+            IList<Item> Items = new List<Item> { new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 3, Quality = 12 } };
+            GildedRose app = new GildedRose(Items);
+            app.UpdateQuality();
+            Assert.Equal(15, Items[0].Quality);
+        }
+
     }
 }

@@ -20,7 +20,8 @@ namespace GildedRoseKata
 
                 if (ItemHelper.NotLegendaryItem(itemName))
                 {
-                    if (ItemHelper.NormalItem(itemName))
+                    var isNormalItem = ItemHelper.NormalItem(itemName);
+                    if (isNormalItem)
                     {
                         ItemHelper.CheckAndDecreaseQuality(item);
                         if (itemName == "Conjured Mana Cake")
@@ -38,7 +39,7 @@ namespace GildedRoseKata
 
                     if (ItemHelper.SellByPassed(item))
                     {
-                        if (ItemHelper.NormalItem(itemName))
+                        if (isNormalItem)
                         {
                             ItemHelper.CheckAndDecreaseQuality(item);
                         }

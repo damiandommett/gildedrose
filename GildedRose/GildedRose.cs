@@ -17,65 +17,59 @@ namespace GildedRoseKata
             {
                 var itemName = Items[i].Name;
 
-                if (itemName != "Aged Brie" && itemName != "Backstage passes to a TAFKAL80ETC concert")
+                if (itemName != "Sulfuras, Hand of Ragnaros")
                 {
-                    if (Items[i].Quality > 0)
+                    if (itemName != "Aged Brie" && itemName != "Backstage passes to a TAFKAL80ETC concert")
                     {
-                        if (itemName != "Sulfuras, Hand of Ragnaros")
+                        if (Items[i].Quality > 0)
                         {
                             ReduceQuality(Items[i]);
                         }
                     }
-                }
-                else
-                {
-                    if (NotMaxQuality(Items[i]))
+                    else
                     {
-                        IncreaseQuality(Items[i]);
-
-                        if (itemName == "Backstage passes to a TAFKAL80ETC concert")
+                        if (NotMaxQuality(Items[i]))
                         {
-                            if (Items[i].SellIn < 11)
-                            {
-                                CheckAndIncreaseQuality(Items[i]);
-    
-                            }
+                            IncreaseQuality(Items[i]);
 
-                            if (Items[i].SellIn < 6)
+                            if (itemName == "Backstage passes to a TAFKAL80ETC concert")
                             {
-                                CheckAndIncreaseQuality(Items[i]);
+                                if (Items[i].SellIn < 11)
+                                {
+                                    CheckAndIncreaseQuality(Items[i]);
+
+                                }
+
+                                if (Items[i].SellIn < 6)
+                                {
+                                    CheckAndIncreaseQuality(Items[i]);
+                                }
                             }
                         }
                     }
-                }
 
-                if (itemName != "Sulfuras, Hand of Ragnaros")
-                {
                     ReduceSellInTime(Items[i]);
-                }
 
-                if (SellByPassed(Items[i]))
-                {
-                    if (itemName != "Aged Brie")
+                    if (SellByPassed(Items[i]))
                     {
-                        if (itemName != "Backstage passes to a TAFKAL80ETC concert")
+                        if (itemName != "Aged Brie")
                         {
-                            if (Items[i].Quality > 0)
+                            if (itemName != "Backstage passes to a TAFKAL80ETC concert")
                             {
-                                if (itemName != "Sulfuras, Hand of Ragnaros")
+                                if (Items[i].Quality > 0)
                                 {
                                     ReduceQuality(Items[i]);
                                 }
                             }
+                            else
+                            {
+                                Items[i].Quality = 0;
+                            }
                         }
                         else
                         {
-                            Items[i].Quality = 0;
+                            CheckAndIncreaseQuality(Items[i]);
                         }
-                    }
-                    else
-                    {
-                        CheckAndIncreaseQuality(Items[i]);
                     }
                 }
             }

@@ -37,10 +37,7 @@ namespace GildedRoseKata
                         {
                             if (itemName != "Backstage passes to a TAFKAL80ETC concert")
                             {
-                                if (Items[i].Quality > 0)
-                                {
-                                    ReduceQuality(Items[i]);
-                                }
+                                CheckAndDecreaseQuality(Items[i]);
                             }
                             else
                             {

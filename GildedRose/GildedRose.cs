@@ -59,7 +59,7 @@ namespace GildedRoseKata
                     ReduceSellInTime(Items[i]);
                 }
 
-                if (Items[i].SellIn < 0)
+                if (SellByPassed(Items[i]))
                 {
                     if (itemName != "Aged Brie")
                     {
@@ -87,6 +87,11 @@ namespace GildedRoseKata
                     }
                 }
             }
+        }
+
+        private bool SellByPassed(Item item)
+        {
+            return item.SellIn < 0;
         }
 
         private void ReduceSellInTime(Item item)

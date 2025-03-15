@@ -6,6 +6,7 @@ namespace GildedRoseKata
     public class GildedRose
     {
         IList<Item> Items;
+
         public GildedRose(IList<Item> Items)
         {
             this.Items = Items;
@@ -13,119 +14,45 @@ namespace GildedRoseKata
 
         public void UpdateQuality()
         {
-            for (var i = 0; i < Items.Count; i++)
+            foreach (var item in Items)
             {
-                var itemName = Items[i].Name;
+                var itemName = item.Name;
 
-                if (NotLegendaryItem(itemName))
+                if (ItemHelper.NotLegendaryItem(itemName))
                 {
-                    if (NormalItem(itemName))
+                    if (ItemHelper.NormalItem(itemName))
                     {
-                        CheckAndDecreaseQuality(Items[i]);
+                        ItemHelper.CheckAndDecreaseQuality(item);
                         if (itemName == "Conjured Mana Cake")
                         {
-                            CheckAndDecreaseQuality(Items[i]);
+                            ItemHelper.CheckAndDecreaseQuality(item);
                         }
                     }
                     else
                     {
-                        CheckAndIncreaseQuality(Items[i]);
-                        ConcertQualityRules(Items[i]);
+                        ItemHelper.CheckAndIncreaseQuality(item);
+                        ItemHelper.ConcertQualityRules(item);
                     }
 
-                    ReduceSellInTime(Items[i]);
+                    ItemHelper.ReduceSellInTime(item);
 
-                    if (SellByPassed(Items[i]))
+                    if (ItemHelper.SellByPassed(item))
                     {
-                        if (NormalItem(itemName))
+                        if (ItemHelper.NormalItem(itemName))
                         {
-                            CheckAndDecreaseQuality(Items[i]);
+                            ItemHelper.CheckAndDecreaseQuality(item);
                         }
                         else if (itemName == "Backstage passes to a TAFKAL80ETC concert")
                         {
-                            Items[i].Quality = 0;
+                            item.Quality = 0;
                         }
                         else if (itemName == "Aged Brie")
                         {
-                            CheckAndIncreaseQuality(Items[i]);
+                            ItemHelper.CheckAndIncreaseQuality(item);
                         }
                     }
                 }
             }
-        }
-
-        private void CheckAndDecreaseQuality(Item item)
-        {
-            if (NotMinQuality(item.Quality))
-            {
-                ReduceQuality(item);
-            }
-        }
-
-        private bool NotMinQuality(int checkNumber)
-        {
-            return checkNumber > 0;
-        }
-
-        private void ConcertQualityRules(Item item)
-        {
-            if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
-            {
-                if (item.SellIn < 11)
-                {
-                    CheckAndIncreaseQuality(item);
-
-                }
-
-                if (item.SellIn < 6)
-                {
-                    CheckAndIncreaseQuality(item);
-                }
-            }
-        }
-
-        // normal items are where quality decreases over item
-        private static bool NormalItem(string itemName)
-        {
-            return itemName != "Aged Brie" && itemName != "Backstage passes to a TAFKAL80ETC concert";
-        }
-
-        private static bool NotLegendaryItem(string itemName)
-        {
-            return itemName != "Sulfuras, Hand of Ragnaros";
-        }
-
-        private void CheckAndIncreaseQuality(Item item)
-        {
-            if (NotMaxQuality(item.Quality))
-            {
-                IncreaseQuality(item);
-            }
-        }
-
-        private bool NotMaxQuality(int checkNumber)
-        {
-            return checkNumber < 50;
-        }
-
-        private bool SellByPassed(Item item)
-        {
-            return item.SellIn < 0;
-        }
-
-        private void ReduceSellInTime(Item item)
-        {
-            item.SellIn -= 1;
-        }
-
-        private void ReduceQuality(Item item)
-        {
-            item.Quality -= 1;
-        }
-
-        private void IncreaseQuality(Item item)
-        {
-            item.Quality += 1;
         }
 
     }

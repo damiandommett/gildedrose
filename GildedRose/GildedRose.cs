@@ -24,7 +24,7 @@ namespace GildedRoseKata
                     if (isNormalItem)
                     {
                         ItemHelper.CheckAndDecreaseQuality(item);
-                        if (itemName == "Conjured Mana Cake")
+                        if (ItemHelper.IsConjured(itemName))
                         {
                             ItemHelper.CheckAndDecreaseQuality(item);
                         }
@@ -43,11 +43,11 @@ namespace GildedRoseKata
                         {
                             ItemHelper.CheckAndDecreaseQuality(item);
                         }
-                        else if (itemName == "Backstage passes to a TAFKAL80ETC concert")
+                        else if (ItemHelper.IsTicket(itemName))
                         {
                             item.Quality = 0;
                         }
-                        else if (itemName == "Aged Brie")
+                        else if (ItemHelper.IsBrie(itemName))
                         {
                             ItemHelper.CheckAndIncreaseQuality(item);
                         }

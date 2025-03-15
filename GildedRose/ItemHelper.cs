@@ -18,7 +18,7 @@ public static class ItemHelper
 
     public static void ConcertQualityRules(Item item)
     {
-        if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
+        if (IsTicket(item.Name))
         {
             if (item.SellIn < 11)
             {
@@ -36,7 +36,7 @@ public static class ItemHelper
     // normal items are where quality decreases over item
     public static bool NormalItem(string itemName)
     {
-        return itemName != "Aged Brie" && itemName != "Backstage passes to a TAFKAL80ETC concert";
+        return IsBrie(itemName) == false && IsTicket(itemName) == false;
     }
 
     public static bool NotLegendaryItem(string itemName)
@@ -77,4 +77,18 @@ public static class ItemHelper
         item.Quality += 1;
     }
 
+    public static bool IsBrie(string itemName)
+    {
+        return itemName == "Aged Brie";
+    }
+
+    public static bool IsTicket(string itemName)
+    {
+        return itemName == "Backstage passes to a TAFKAL80ETC concert";
+    }
+
+    public static bool IsConjured(string itemName)
+    {
+        return itemName == "Conjured Mana Cake";
+    }
 }

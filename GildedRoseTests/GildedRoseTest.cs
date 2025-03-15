@@ -61,6 +61,14 @@ namespace GildedRoseTests
             Assert.Equal(0, Items[0].Quality);
         }
 
+        [Fact]
+        public void if_sell_by_passed_quality_degrades_twice_as_fast()
+        {
+            IList<Item> Items = new List<Item> { new Item { Name = "foo", SellIn = -1, Quality = 3 } };
+            GildedRose app = new GildedRose(Items);
+            app.UpdateQuality();
+            Assert.Equal(1, Items[0].Quality);
+        }
 
     }
 }

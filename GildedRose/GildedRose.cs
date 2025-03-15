@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace GildedRoseKata
 {
@@ -55,7 +56,7 @@ namespace GildedRoseKata
 
                 if (itemName != "Sulfuras, Hand of Ragnaros")
                 {
-                    Items[i].SellIn = Items[i].SellIn - 1;
+                    ReduceSellInTime(Items[i]);
                 }
 
                 if (Items[i].SellIn < 0)
@@ -86,6 +87,11 @@ namespace GildedRoseKata
                     }
                 }
             }
+        }
+
+        private void ReduceSellInTime(Item item)
+        {
+            item.SellIn -= 1;
         }
     }
 }

@@ -22,6 +22,10 @@ namespace GildedRoseKata
                     if (NormalItem(itemName))
                     {
                         CheckAndDecreaseQuality(Items[i]);
+                        if (itemName == "Conjured Mana Cake")
+                        {
+                            CheckAndDecreaseQuality(Items[i]);
+                        }
                     }
                     else
                     {

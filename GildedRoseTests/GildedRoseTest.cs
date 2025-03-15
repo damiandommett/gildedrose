@@ -132,5 +132,23 @@ namespace GildedRoseTests
             Assert.Equal(15, Items[0].Quality);
         }
 
+        [Fact]
+        public void conjured_item_degrade_twice_as_fast()
+        {
+            IList<Item> Items = new List<Item> { new Item { Name = "Conjured Mana Cake", SellIn = 6, Quality = 4 } };
+            GildedRose app = new GildedRose(Items);
+            app.UpdateQuality();
+            Assert.Equal(2, Items[0].Quality);
+        }
+
+        [Fact]
+        public void conjured_item_cannot_be_negative()
+        {
+            IList<Item> Items = new List<Item> { new Item { Name = "Conjured Mana Cake", SellIn = 6, Quality = 1 } };
+            GildedRose app = new GildedRose(Items);
+            app.UpdateQuality();
+            Assert.Equal(0, Items[0].Quality);
+        }
+
     }
 }

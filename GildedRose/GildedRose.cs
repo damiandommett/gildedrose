@@ -19,33 +19,14 @@ namespace GildedRoseKata
 
                 if (NotLegendaryItem(itemName))
                 {
-                    if (itemName != "Aged Brie" && itemName != "Backstage passes to a TAFKAL80ETC concert")
+                    if (NormalItem(itemName))
                     {
-                        if (Items[i].Quality > 0)
-                        {
-                            ReduceQuality(Items[i]);
-                        }
+                        CheckAndDecreaseQuality(Items[i]);
                     }
                     else
                     {
-                        if (NotMaxQuality(Items[i]))
-                        {
-                            IncreaseQuality(Items[i]);
-
-                            if (itemName == "Backstage passes to a TAFKAL80ETC concert")
-                            {
-                                if (Items[i].SellIn < 11)
-                                {
-                                    CheckAndIncreaseQuality(Items[i]);
-
-                                }
-
-                                if (Items[i].SellIn < 6)
-                                {
-                                    CheckAndIncreaseQuality(Items[i]);
-                                }
-                            }
-                        }
+                        CheckAndIncreaseQuality(Items[i]);
+                        ConcertQualityRules(Items[i]);
                     }
 
                     ReduceSellInTime(Items[i]);
@@ -75,6 +56,41 @@ namespace GildedRoseKata
             }
         }
 
+        private void CheckAndDecreaseQuality(Item item)
+        {
+            if (NotMinQuality(item.Quality))
+            {
+                ReduceQuality(item);
+            }
+        }
+
+        private bool NotMinQuality(int checkNumber)
+        {
+            return checkNumber > 0;
+        }
+
+        private void ConcertQualityRules(Item item)
+        {
+            if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
+            {
+                if (item.SellIn < 11)
+                {
+                    CheckAndIncreaseQuality(item);
+
+                }
+
+                if (item.SellIn < 6)
+                {
+                    CheckAndIncreaseQuality(item);
+                }
+            }
+        }
+
+        private static bool NormalItem(string itemName)
+        {
+            return itemName != "Aged Brie" && itemName != "Backstage passes to a TAFKAL80ETC concert";
+        }
+
         private static bool NotLegendaryItem(string itemName)
         {
             return itemName != "Sulfuras, Hand of Ragnaros";
@@ -82,15 +98,15 @@ namespace GildedRoseKata
 
         private void CheckAndIncreaseQuality(Item item)
         {
-            if (NotMaxQuality(item))
+            if (NotMaxQuality(item.Quality))
             {
                 IncreaseQuality(item);
             }
         }
 
-        private bool NotMaxQuality(Item item)
+        private bool NotMaxQuality(int checkNumber)
         {
-            return item.Quality < 50;
+            return checkNumber < 50;
         }
 
         private bool SellByPassed(Item item)

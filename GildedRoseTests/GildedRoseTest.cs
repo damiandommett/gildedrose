@@ -70,5 +70,14 @@ namespace GildedRoseTests
             Assert.Equal(1, Items[0].Quality);
         }
 
+        [Fact]
+        public void if_sell_by_passed_for_concert_quality_is_zero()
+        {
+            IList<Item> Items = new List<Item> { new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = -1, Quality = 4 } };
+            GildedRose app = new GildedRose(Items);
+            app.UpdateQuality();
+            Assert.Equal(0, Items[0].Quality);
+        }
+
     }
 }

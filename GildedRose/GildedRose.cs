@@ -33,18 +33,15 @@ namespace GildedRoseKata
 
                     if (SellByPassed(Items[i]))
                     {
-                        if (itemName != "Aged Brie")
+                        if (NormalItem(itemName))
                         {
-                            if (itemName != "Backstage passes to a TAFKAL80ETC concert")
-                            {
-                                CheckAndDecreaseQuality(Items[i]);
-                            }
-                            else
-                            {
-                                Items[i].Quality = 0;
-                            }
+                            CheckAndDecreaseQuality(Items[i]);
                         }
-                        else
+                        else if (itemName == "Backstage passes to a TAFKAL80ETC concert")
+                        {
+                            Items[i].Quality = 0;
+                        }
+                        else if (itemName == "Aged Brie")
                         {
                             CheckAndIncreaseQuality(Items[i]);
                         }
@@ -83,6 +80,7 @@ namespace GildedRoseKata
             }
         }
 
+        // normal items are where quality decreases over item
         private static bool NormalItem(string itemName)
         {
             return itemName != "Aged Brie" && itemName != "Backstage passes to a TAFKAL80ETC concert";

@@ -31,7 +31,7 @@ namespace GildedRoseKata
                 {
                     if (Items[i].Quality < 50)
                     {
-                        Items[i].Quality = Items[i].Quality + 1;
+                        IncreaseQuality(Items[i]);
 
                         if (itemName == "Backstage passes to a TAFKAL80ETC concert")
                         {
@@ -39,7 +39,7 @@ namespace GildedRoseKata
                             {
                                 if (Items[i].Quality < 50)
                                 {
-                                    Items[i].Quality = Items[i].Quality + 1;
+                                    IncreaseQuality(Items[i]);
                                 }
                             }
 
@@ -47,7 +47,7 @@ namespace GildedRoseKata
                             {
                                 if (Items[i].Quality < 50)
                                 {
-                                    Items[i].Quality = Items[i].Quality + 1;
+                                    IncreaseQuality(Items[i]);
                                 }
                             }
                         }
@@ -82,7 +82,7 @@ namespace GildedRoseKata
                     {
                         if (Items[i].Quality < 50)
                         {
-                            Items[i].Quality = Items[i].Quality + 1;
+                            IncreaseQuality(Items[i]);
                         }
                     }
                 }
@@ -103,5 +103,11 @@ namespace GildedRoseKata
         {
             item.Quality -= 1;
         }
+
+        private void IncreaseQuality(Item item)
+        {
+            item.Quality += 1;
+        }
+
     }
 }
